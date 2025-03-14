@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Check, Star, X } from "lucide-react"
+import { Check, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -21,7 +21,6 @@ const formSchema = z.object({
 })
 
 export default function PricingPlans() {
-  const [annualBilling, setAnnualBilling] = useState(true)
   const [showDemoForm, setShowDemoForm] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -47,103 +46,70 @@ export default function PricingPlans() {
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">Pricing Plans</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">Affordable School Management Solution</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Choose the perfect plan for your educational institution
+          Transform your institution with our comprehensive solution starting at just ₹5 per student
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-        {/* Basic Plan */}
-        <Card className="flex flex-col border-2 shadow-sm">
-          <CardHeader className="pb-8">
-            <CardTitle className="text-2xl font-bold text-center">Basic Plan</CardTitle>
-            <CardDescription className="text-center text-lg mt-2">Perfect for small institutions</CardDescription>
-            <div className="mt-4 text-center">
-              <p className="text-lg font-medium">Contact for Pricing</p>
-            </div>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <ul className="space-y-3">
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>Student & Teacher Management</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>Fee Collection Tracking</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>Attendance Management</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>Basic Reports</span>
-              </li>
-            </ul>
-          </CardContent>
-          <CardFooter className="pt-4">
-            <Button className="w-full" size="lg">
-              Contact Us
-            </Button>
-          </CardFooter>
-        </Card>
-
-        {/* Customized Plan */}
-        <Card className="flex flex-col border-2 border-primary shadow-lg relative">
+      <div className="flex justify-center">
+        <Card className="flex flex-col border-2 border-primary shadow-lg relative max-w-xl w-full">
           <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
             <Badge className="bg-primary text-primary-foreground px-3 py-1">
               <Star className="h-3.5 w-3.5 mr-1 inline" />
-              MOST POPULAR
+              BEST VALUE
             </Badge>
           </div>
           <CardHeader className="pb-8">
-            <CardTitle className="text-2xl font-bold text-center">Customized Plan</CardTitle>
-            <CardDescription className="text-center text-lg mt-2">Tailored for growing institutions</CardDescription>
+            <CardTitle className="text-2xl font-bold text-center">All-In-One School Solution</CardTitle>
+            <CardDescription className="text-center text-lg mt-2">Everything you need to manage your institution</CardDescription>
             <div className="mt-4 text-center">
-              <p className="text-lg font-medium">Contact for Pricing</p>
+              <p className="text-3xl font-bold">₹5<span className="text-lg font-normal">/student</span></p>
+              <p className="text-sm text-muted-foreground mt-2">* Billed annually</p>
             </div>
           </CardHeader>
           <CardContent className="flex-grow">
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span className="font-medium">All Basic Plan Features</span>
+                <span className="font-medium">Complete Student & Teacher Management</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>Advanced Reports & Analytics</span>
+                <span>Smart Fee Collection & Tracking</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>Custom Branding</span>
+                <span>Advanced Attendance Management</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>E-learning Integration</span>
+                <span>Comprehensive Reports & Analytics</span>
               </li>
               <li className="flex items-start gap-2">
                 <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                <span>24/7 Support</span>
+                <span>Custom Branding Options</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span>E-learning Platform Integration</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span>24/7 Priority Support</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                <span>Free Setup & Training</span>
               </li>
             </ul>
           </CardContent>
           <CardFooter className="pt-4">
-            <Button className="w-full" size="lg" variant="default">
-              Contact Us
+            <Button className="w-full" size="lg" variant="default" onClick={() => setShowDemoForm(true)}>
+              Schedule a Free Demo
             </Button>
           </CardFooter>
         </Card>
-
-       
-      </div>
-
-      <div className="mt-16 text-center">
-        <h3 className="text-xl font-semibold mb-4">Need a custom solution?</h3>
-        <Button size="lg" variant="default" onClick={() => setShowDemoForm(true)}>
-          Schedule a Demo
-        </Button>
       </div>
 
       <Dialog open={showDemoForm} onOpenChange={setShowDemoForm}>

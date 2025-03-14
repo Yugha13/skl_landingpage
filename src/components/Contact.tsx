@@ -12,7 +12,6 @@ import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
 
 
-
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -21,7 +20,6 @@ const formSchema = z.object({
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
-
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -32,21 +30,31 @@ export default function ContactPage() {
     },
   })
 
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true)
 
+    try {
+      // Create mailto link with form data
+      const mailtoLink = `mailto:kuidtech01@gmail.com?subject=Contact Form Submission&body=Name: ${values.name}%0D%0AEmail: ${values.email}%0D%0AMessage: ${values.message}`
+      
+      // Open default mail client
+      window.location.href = mailtoLink
 
-    setTimeout(() => {
-      console.log(values)
       toast({
-        title: "Message sent!",
-        description: "We'll get back to you as soon as possible.",
+        title: "Message ready to send!",
+        description: "Your default email client has been opened.",
       })
+      
       form.reset()
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "There was a problem preparing your message. Please try again.",
+        variant: "destructive"
+      })
+    } finally {
       setIsSubmitting(false)
-    }, 1000)
-
+    }
   }
 
   return (
@@ -111,4 +119,3 @@ export default function ContactPage() {
     </div>
   )
 }
-

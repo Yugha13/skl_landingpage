@@ -1,4 +1,4 @@
-
+import { Instagram, Twitter, Mail } from "lucide-react"
 
 const Footer = () => {
   return (
@@ -10,6 +10,17 @@ const Footer = () => {
               <p className="text-sm text-foreground/60">
                 Empowering learners worldwide to achieve their goals through innovative education.
               </p>
+              <div className="flex items-center gap-4 mt-4">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-pink-500">
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-foreground/60 hover:text-blue-500">
+                  <Twitter className="h-5 w-5" />
+                </a>
+                <a href="mailto:kuidtech01@gmail.com" className="text-foreground/60 hover:text-red-500">
+                  <Mail className="h-5 w-5" />
+                </a>
+              </div>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Product</h4>
