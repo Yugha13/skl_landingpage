@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-scroll";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 const Hero = () => {
   const [showForm, setShowForm] = useState(false);
@@ -38,50 +40,93 @@ const Hero = () => {
           </button>
         </div>
         {showForm && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-            <div className="bg-white rounded-lg p-6 w-full max-w-md">
-              <h2 className="text-2xl font-bold mb-4 text-gray-900">Reserve Your Free Testimonial</h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <Input
-                  type="text"
-                  placeholder="Your Name"
-                  required
-                  className="w-full"
-                />
-                <Input
-                  type="text"
-                  placeholder="School Name"
-                  required
-                  className="w-full"
-                />
-                <Input
-                  type="text"
-                  placeholder="Address"
-                  required
-                  className="w-full"
-                />
-                <Input
-                  type="tel"
-                  placeholder="Phone Number"
-                  required
-                  className="w-full"
-                />
-                <Input
-                  type="email"
-                  placeholder="Email Address"
-                  required
-                  className="w-full"
-                />
-                <div className="flex gap-2 justify-end">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-xl p-8 w-full max-w-3xl">
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">Reserve Your Free Testimonial</h2>
+              <p className="text-gray-600 mb-8">Fill out the form below to claim your complimentary testimonial spot. Our team will contact you shortly to schedule the session.</p>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name" className="text-sm font-medium">Full Name</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="John Doe"
+                      required
+                      className="w-full h-12"
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="school" className="text-sm font-medium">School Name</Label>
+                    <Input
+                      id="school"
+                      type="text"
+                      placeholder="St. Mary's School"
+                      required
+                      className="w-full h-12"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="phone" className="text-sm font-medium">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+1 (555) 000-0000"
+                      required
+                      className="w-full h-12"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      required
+                      className="w-full h-12"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="address" className="text-sm font-medium">School Address</Label>
+                  <Textarea
+                    id="address"
+                    placeholder="Enter your complete school address"
+                    required
+                    className="w-full min-h-[100px]"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="message" className="text-sm font-medium">Additional Information</Label>
+                  <Textarea
+                    id="message"
+                    placeholder="Tell us about your school and what you're looking for..."
+                    className="w-full min-h-[100px]"
+                  />
+                </div>
+
+                <div className="flex gap-4 justify-end pt-4">
                   <Button
                     type="button"
                     variant="outline"
+                    size="lg"
                     onClick={() => setShowForm(false)}
+                    className="px-8"
                   >
                     Cancel
                   </Button>
-                  <Button type="submit">
-                    Submit
+                  <Button 
+                    type="submit"
+                    size="lg"
+                    className="px-8"
+                  >
+                    Submit Request
                   </Button>
                 </div>
               </form>
