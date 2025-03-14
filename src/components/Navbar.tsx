@@ -25,23 +25,17 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b">
       <div className="container max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          {/* Social Media Icons */}
-          <div className="hidden md:flex items-center gap-4 mr-8">
-            <Instagram className="h-5 w-5 cursor-pointer text-pink-500" />
-            <Twitter className="h-5 w-5 cursor-pointer text-blue-500" />
-          </div>
-
           {/* Kiudtech Logo */}
           <Link 
             to="hero" 
             smooth={true} 
             duration={500} 
-            className="text-xl font-bold cursor-pointer"
+            className="flex items-center gap-2 cursor-pointer"
             onClick={handleLinkClick}
           >
-            Kiudtech
+            <img src="/uploads/icon.png" alt="Kiudtech Logo" className="h-8 w-8" />
+            <span className="text-xl font-bold">Kiudtech</span>
           </Link>
-
           {/* Centered Menu Items */}
           <div className="hidden md:flex items-center gap-8 mx-auto">
             {menuItems.map((item) => (
@@ -58,10 +52,14 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right End: WhatsApp Contact */}
-          <div className="hidden md:flex items-center gap-3">
-            <Phone className="h-5 w-5 text-green-500" />
-            <span className="text-sm">+91-85953-89881</span>
+          {/* Right End: WhatsApp Contact and Social */}
+          <div className="hidden md:flex items-center gap-4">
+            <Instagram className="h-5 w-5 cursor-pointer text-pink-500" />
+            <Twitter className="h-5 w-5 cursor-pointer text-blue-500" />
+            <div className="flex items-center gap-3">
+              <Phone className="h-5 w-5 text-green-500" />
+              <span className="text-sm">+91-85953-89881</span>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,7 +93,8 @@ const Navbar = () => {
                 {item.label}
               </Link>
             ))}
-            {/* Mobile Contact Number */}
+            {/* Mobile Contact Number and Social */}
+            
             <div className="flex items-center gap-3 pt-2">
               <Phone className="h-5 w-5 text-green-500" />
               <span className="text-sm">+91-85953-89881</span>

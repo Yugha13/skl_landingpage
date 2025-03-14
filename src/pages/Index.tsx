@@ -34,8 +34,8 @@ const Index = () => {
       <section id="hero">
         <Hero />
       </section>
-      <Navbar/>
-      <section id="features">
+      <Navbar />
+      <section id="features" className="bg-gradient-to-b from-[#0c0e0c] to-white">
         <Features />
       </section>
       <section id="about">

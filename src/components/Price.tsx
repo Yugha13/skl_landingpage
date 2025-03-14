@@ -46,9 +46,9 @@ export default function PricingPlans() {
   return (
     <div className="container mx-auto px-4 py-16 md:py-24">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">Affordable School Management Solution</h1>
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">Comprehensive School Management Solution</h1>
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-          Transform your institution with our comprehensive solution starting at just ₹5 per student
+          Transform your institution with our complete management solution
         </p>
       </div>
 
@@ -63,10 +63,6 @@ export default function PricingPlans() {
           <CardHeader className="pb-8">
             <CardTitle className="text-2xl font-bold text-center">All-In-One School Solution</CardTitle>
             <CardDescription className="text-center text-lg mt-2">Everything you need to manage your institution</CardDescription>
-            <div className="mt-4 text-center">
-              <p className="text-3xl font-bold">₹5<span className="text-lg font-normal">/student</span></p>
-              <p className="text-sm text-muted-foreground mt-2">* Billed annually</p>
-            </div>
           </CardHeader>
           <CardContent className="flex-grow">
             <ul className="space-y-3">

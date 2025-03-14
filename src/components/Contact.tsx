@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
 
-
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
@@ -34,10 +33,7 @@ export default function ContactPage() {
     setIsSubmitting(true)
 
     try {
-      // Create mailto link with form data
       const mailtoLink = `mailto:kuidtech01@gmail.com?subject=Contact Form Submission&body=Name: ${values.name}%0D%0AEmail: ${values.email}%0D%0AMessage: ${values.message}`
-      
-      // Open default mail client
       window.location.href = mailtoLink
 
       toast({
@@ -59,12 +55,15 @@ export default function ContactPage() {
 
   return (
     <div className="container mx-auto py-10 px-4">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-4">Contact Us</h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Get in touch with us and we'll help you transform your institution
+        </p>
+      </div>
+
       <Card className="max-w-2xl mx-auto">
-        <CardHeader>
-          <CardTitle className="text-2xl">Contact Us</CardTitle>
-          <CardDescription>Fill out the form below and we'll get back to you as soon as possible.</CardDescription>
-        </CardHeader>
-        <CardContent>
+        <CardContent className="pt-6">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <FormField
