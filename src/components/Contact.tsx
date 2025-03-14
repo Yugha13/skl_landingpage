@@ -1,9 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
@@ -11,17 +9,16 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/hooks/use-toast"
 
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-})
+type FormValues = {
+  name: string;
+  email: string;
+  message: string;
+}
 
 export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<FormValues>({
     defaultValues: {
       name: "",
       email: "",
@@ -29,10 +26,26 @@ export default function ContactPage() {
     },
   })
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: FormValues) {
     setIsSubmitting(true)
 
     try {
+      // Basic validation
+      if (values.name.length < 2) {
+        form.setError("name", { message: "Name must be at least 2 characters." })
+        return
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+        form.setError("email", { message: "Please enter a valid email address." })
+        return
+      }
+
+      if (values.message.length < 10) {
+        form.setError("message", { message: "Message must be at least 10 characters." })
+        return
+      }
+
       const mailtoLink = `mailto:kuidtech01@gmail.com?subject=Contact Form Submission&body=Name: ${values.name}%0D%0AEmail: ${values.email}%0D%0AMessage: ${values.message}`
       window.location.href = mailtoLink
 
