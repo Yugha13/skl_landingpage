@@ -9,22 +9,12 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
 import { toast } from "@/components/ui/use-toast"
-
-const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email"),
-  phone: z.string().min(10, "Please enter a valid phone number"),
-  date: z.string().min(1, "Please select a date")
-})
 
 export default function PricingPlans() {
   const [showDemoForm, setShowDemoForm] = useState(false)
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm({
     defaultValues: {
       name: "",
       email: "",
@@ -33,7 +23,30 @@ export default function PricingPlans() {
     }
   })
 
-  const handleSubmitDemo = (values: z.infer<typeof formSchema>) => {
+  const handleSubmitDemo = (values: {
+    name: string;
+    email: string;
+    phone: string;
+    date: string;
+  }) => {
+    // Basic validation
+    if (values.name.length < 2) {
+      form.setError("name", { message: "Name must be at least 2 characters" })
+      return
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
+      form.setError("email", { message: "Please enter a valid email" })
+      return
+    }
+    if (values.phone.length < 10) {
+      form.setError("phone", { message: "Please enter a valid phone number" })
+      return
+    }
+    if (!values.date) {
+      form.setError("date", { message: "Please select a date" })
+      return
+    }
+
     console.log(values)
     toast({
       title: "Demo Scheduled!",
